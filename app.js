@@ -16,6 +16,11 @@ bike.save().then((data) => {
 });
     
 })
+app.delete("/bikes",async(req,res)=>{
+    const response=await Bike.deleteOne({ cost: "" });
+    
+    res.json(response)
+})
 app.get("/bikes",async(req,res)=>{
     const response=await Bike.find({})
     res.json(response)
