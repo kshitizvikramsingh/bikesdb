@@ -1,4 +1,5 @@
 const express=require("express")
+const ObjectId = require('mongodb').ObjectId;
 const mongoose=require("mongoose")
 var cors = require('cors')
 const app=express()
@@ -16,9 +17,10 @@ bike.save().then((data) => {
 });
     
 })
-app.delete("/bikes",async(req,res)=>{
-    const response=await Bike.deleteOne({ _id: req.body._id });
-    
+app.delete('/bikes',async(req,res)=>{
+    console.log(req.body)
+    const response=await Bike.deleteOne({name:req.body.name});
+    console.log(response.deletedCount)
     res.json(response)
 })
 app.get("/bikes",async(req,res)=>{
